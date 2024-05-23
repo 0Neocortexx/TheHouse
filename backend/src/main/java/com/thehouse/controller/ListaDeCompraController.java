@@ -15,7 +15,7 @@ public class ListaDeCompraController {
     private ListaDeCompraRepository listaDeCompraRepository;
 
 
-    @GetMapping("/vercompras")
+    @GetMapping("/listacompras")
     public List<ListaDeCompra> getAll() {
         return listaDeCompraRepository.findAll();
     }
