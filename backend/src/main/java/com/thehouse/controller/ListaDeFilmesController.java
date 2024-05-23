@@ -20,6 +20,7 @@ public class ListaDeFilmesController {
         return listaDeFilmeRepository.findAll();
     }
 
+    // Verificar formato do json enviado para o backend
     @PostMapping("/filmes/novo")
     public String addFilme(@RequestBody ListaDeFilmes listaDeFilmes) {
         listaDeFilmeRepository.save(listaDeFilmes);
