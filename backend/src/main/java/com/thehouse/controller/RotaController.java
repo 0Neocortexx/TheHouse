@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RotaController {
     @GetMapping("/")
     public String view() {
-        return "";
+        return "<h1>Hello World!</h1>";
 
     }
 }
