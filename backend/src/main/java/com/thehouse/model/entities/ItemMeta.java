@@ -37,6 +37,7 @@ public class ItemMeta {
     public Long getId() {
         return id;
     }
+
     public String getItem() {
         return item;
     }

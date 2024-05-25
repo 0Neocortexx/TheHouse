@@ -11,6 +11,5 @@ public class RotaController {
     @GetMapping("/")
     public String view() {
         return "<h1>Hello World!</h1>";
-
     }
 }
