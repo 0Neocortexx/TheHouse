@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/financeiro")
+@RequestMapping("/")
 public class FinanceController {
 
     @Autowired
     private FinanceRepository financeRepository;
 
-    @GetMapping("/verfinancas")
+    @GetMapping("/financas")
     public List<Financas> getAll() {
-        return financeRepository.findAll();
+        return financeRepository.findAllByOrderByValorDesc();
     }
 
-    @PostMapping("/novo")
+    @PostMapping("/financas/novo")
     public String addFinance(@RequestBody Financas financas) {
         financeRepository.save(financas);
         return "Finança salva!";

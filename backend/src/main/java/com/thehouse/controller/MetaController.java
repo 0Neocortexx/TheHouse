@@ -1,16 +1,15 @@
 package com.thehouse.controller;
 
 import com.thehouse.dto.ErrorMessage;
+import com.thehouse.dto.SucessMessage;
 import com.thehouse.model.entities.ItemMeta;
 import com.thehouse.services.MetaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -25,15 +24,25 @@ public class MetaController {
     }
 
     @PostMapping("/metas/novo")
-    public String addMeta(@RequestBody ItemMeta itemMeta) {
+    public ResponseEntity<?> addMeta(@RequestBody ItemMeta itemMeta) {
         metaService.salvar(itemMeta);
-        return "Meta cadastrada!";
+        return ResponseEntity.status(HttpStatus.OK).body(new SucessMessage("NOVA META CADASTRADA!"));
     }
 
-    @PutMapping("/metas/alterar")
-    public String alterarMeta(@RequestBody ItemMeta itemMeta) {
-        metaService.salvar(itemMeta);
-        return "Alterado!";
+    /*
+    * O método alterarMeta recebe o id informado na rota e o corpo da requisição
+    * Caso não encontre o id informado na rota da requisição retornará 404 e enviará uma mensagem
+    * Caso encontre, usará o id informado na rota e o objeto recebido no corpo para realizar a alteração
+    */
+    @PutMapping("/meta/alterar/{id}")
+    public ResponseEntity<?> alterarMeta(@PathVariable Long id, @RequestBody ItemMeta itemMeta) {
+        if (metaService.buscarPorId(id).isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorMessage("META NÃO ENCONTRADA"));
+        } else {
+            itemMeta.setId(id);
+            metaService.salvar(itemMeta);
+            return ResponseEntity.status(HttpStatus.OK).body(itemMeta);
+        }
     }
 
     /*
