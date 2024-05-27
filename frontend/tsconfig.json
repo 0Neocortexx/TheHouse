@@ -1,74 +1,32 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "isolatedModules": true,
-    "strict": true,
+    "target": "ESNext",
     "jsx": "preserve",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
+    "lib": ["DOM", "ESNext"],
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@themeConfig": [
-        "themeConfig.ts"
-      ],
-      "@layouts/*": [
-        "src/@layouts/*"
-      ],
-      "@layouts": [
-        "src/@layouts"
-      ],
-      "@core/*": [
-        "src/@core/*"
-      ],
-      "@core": [
-        "src/@core"
-      ],
-      "@images/*": [
-        "src/assets/images/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@axios": [
-        "src/plugins/axios"
-      ],
-      "@validators": [
-        "src/@core/utils/validators"
-      ]
+      "@/*": ["src/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ],
-    "skipLibCheck": true,
+    "resolveJsonModule": true,
     "types": [
       "vite/client",
-      "vite-plugin-pages/client",
-      "vite-plugin-vue-layouts/client"
-    ]
+      "vite-plugin-vue-layouts/client",
+      "unplugin-vue-router/client"
+    ],
+    "allowJs": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
   "include": [
-    "vite.config.*",
-    "env.d.ts",
-    "shims.d.ts",
-    "src/**/*",
-    "src/**/*.vue",
-    "themeConfig.ts"
+    "./src/typed-router.d.ts"
   ],
-  "exclude": [
-    "dist",
-    "node_modules",
-    "src/@iconify/*"
-  ]
+  "exclude": ["dist", "node_modules", "cypress"],
+  "references": [{ "path": "./tsconfig.node.json" }],
 }
