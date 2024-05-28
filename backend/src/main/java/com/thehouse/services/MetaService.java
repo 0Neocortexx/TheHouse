@@ -22,10 +22,12 @@ public class MetaService {
     public List<ItemMeta> buscarTodos() {
         return repository.findAllByOrderByIdAsc();
     }
-    public Optional<ItemMeta> buscarPorId(Long id) {
-        return repository.findById(id);
+    public ItemMeta buscarPorId(Long id) {
+        return repository.findById(id).orElse(null);
     }
     public void removerMeta(ItemMeta itemMeta) {
         repository.delete(itemMeta);
     }
+
+    public void removerTodas() {repository.deleteAll();}
 }

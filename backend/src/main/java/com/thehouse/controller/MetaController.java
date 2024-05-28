@@ -10,9 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
+@CrossOrigin("*")
 public class MetaController {
 
     @Autowired
@@ -23,7 +25,7 @@ public class MetaController {
         return metaService.buscarTodos();
     }
 
-    @PostMapping("/metas/novo")
+    @PostMapping("/meta/novo")
     public ResponseEntity<?> addMeta(@RequestBody ItemMeta itemMeta) {
         metaService.salvar(itemMeta);
         return ResponseEntity.status(HttpStatus.OK).body(new SucessMessage("NOVA META CADASTRADA!"));
@@ -36,7 +38,7 @@ public class MetaController {
     */
     @PutMapping("/meta/alterar/{id}")
     public ResponseEntity<?> alterarMeta(@PathVariable Long id, @RequestBody ItemMeta itemMeta) {
-        if (metaService.buscarPorId(id).isEmpty()) {
+        if (metaService.buscarPorId(id) == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorMessage("META NÃO ENCONTRADA"));
         } else {
             itemMeta.setId(id);
@@ -52,11 +54,30 @@ public class MetaController {
     // Método para realizar busca por id
     @GetMapping("/meta/{id}") // A rota para realizar uma busca por ID (vai receber um id através da rota)
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
-        if(metaService.buscarPorId(id).isEmpty()) { // Se a busca por id der null ou vazio
+        if(metaService.buscarPorId(id) == null) { // Se a busca por id der null ou vazio
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorMessage("Meta não encontrada!")); // Responderá com um Page not found e enviará a mensagem
         } else { // Se encontrar a mensagem
             return ResponseEntity.ok(metaService.buscarPorId(id)); // Retornará o objeto
         }
     }
+
+    @DeleteMapping("/meta/excluir/{id}")
+    public ResponseEntity<?> removerMeta(@PathVariable Long id) {
+        ItemMeta item = metaService.buscarPorId(id);
+        if (item == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorMessage("META NÃO ENCONTRADA"));
+        } else {
+            metaService.removerMeta(item);
+            return ResponseEntity.status(HttpStatus.OK).body(item);
+        }
+    }
+
+
+    @DeleteMapping("/meta/excluir")
+    public ResponseEntity<?> deleteAll() {
+        metaService.removerTodas();
+        return ResponseEntity.status(HttpStatus.OK).body(new SucessMessage("TODAS A METAS FORAM DELETADAS"));
+    }
+
 
 }

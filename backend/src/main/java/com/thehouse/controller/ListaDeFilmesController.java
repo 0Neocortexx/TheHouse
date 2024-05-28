@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/entretenimento")
+@CrossOrigin("*")
 public class ListaDeFilmesController {
 
     @Autowired

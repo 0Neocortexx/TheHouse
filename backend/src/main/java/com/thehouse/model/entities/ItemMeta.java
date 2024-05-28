@@ -18,7 +18,6 @@ public class ItemMeta {
     private String item;
     private Boolean status;
     private LocalDate meta;
-
     private Double valorAtual;
     private Double valorTotal;
 

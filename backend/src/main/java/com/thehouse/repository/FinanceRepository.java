@@ -13,5 +13,5 @@ public interface FinanceRepository extends JpaRepository<Financas, Long> {
      * Valor: O campo pelo qual a ordenação será feita.
      * Desc: Indica que a ordenação será em ordem decrescente .
      */
-    List<Financas> findAllByOrderByValorDesc();
+    List<Financas> findAllByOrderByIdAsc();
 }
