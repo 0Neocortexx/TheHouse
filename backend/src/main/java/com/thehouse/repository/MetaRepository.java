@@ -1,12 +1,11 @@
 package com.thehouse.repository;
 
-import com.thehouse.model.entities.ItemMeta;
+import com.thehouse.model.entities.Meta;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface ItemMetaRepository extends JpaRepository<ItemMeta, Long> {
+public interface MetaRepository extends JpaRepository<Meta, Long> {
 
     /*
     * Naming Convention (Convenção de Nomenclatura):
@@ -21,5 +20,5 @@ public interface ItemMetaRepository extends JpaRepository<ItemMeta, Long> {
     * Id: O campo pelo qual a ordenação será feita.
     * Asc: Indica que a ordenação será em ordem crescente (ascending).
     */
-    List<ItemMeta> findAllByOrderByIdAsc();
+    List<Meta> findAllByOrderByIdAsc();
 }

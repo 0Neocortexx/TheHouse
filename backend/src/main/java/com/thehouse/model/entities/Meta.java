@@ -10,25 +10,25 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 
 @Entity // Define que a classe será uma entidade do banco
-public class ItemMeta {
+public class Meta {
 
     @Id // Define que esse atributo será um ID
     @GeneratedValue(strategy= GenerationType.IDENTITY) // Define que a estratégia adotada por esse valor será geração de identificador, não repetindo o numero (Serial)
     private Long id;
-    private String item;
-    private Boolean status;
-    private LocalDate meta;
+    private String nomeMeta;
+    private LocalDate dataMeta;
     private Double valorAtual;
     private Double valorTotal;
+    private Boolean status;
 
-    public ItemMeta () {
+    public Meta() {
     }
 
-    public  ItemMeta(Long id, String item, Boolean status, LocalDate meta, Double valorAtual, Double valorTotal) {
+    public  Meta(Long id, String nomeMeta, Boolean status, LocalDate dataMeta, Double valorAtual, Double valorTotal) {
         this.id = id;
-        this.item = item;
+        this.nomeMeta = nomeMeta;
         this.status = status;
-        this.meta = meta;
+        this.dataMeta = dataMeta;
         this.valorAtual = valorAtual;
         this.valorTotal = valorTotal;
     }
@@ -36,52 +36,41 @@ public class ItemMeta {
     public Long getId() {
         return id;
     }
-
-    public String getItem() {
-        return item;
+    public String getNomeMeta() {
+        return nomeMeta;
     }
-
     public Boolean getStatus() {
         return status;
     }
-
-    public LocalDate getMeta() {
-        return meta;
+    public LocalDate getDataMeta() {
+        return dataMeta;
     }
-
     public Double getValorAtual() {
         return valorAtual;
     }
-
     public Double getValorTotal() {
         return valorTotal;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
-    public void setItem(String item) {
-        this.item = item;
+    public void setNomeMeta(String nomeMeta) {
+        this.nomeMeta = nomeMeta;
     }
-
-    public void setMeta(LocalDate meta) {
-        this.meta = meta;
+    public void setDataMeta(LocalDate dataMeta) {
+        this.dataMeta = dataMeta;
     }
-
     public void setStatus(Boolean status) {
         this.status = status;
     }
-
     public void setValorAtual(Double valorAtual) {
         this.valorAtual = valorAtual;
     }
-
     public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
     }
 
     public String toString() {
-        return "id: "+ getId() + "\nItem: " + getItem() + "\nStatus: " + getStatus() + "\nMeta: " + getMeta();
+        return "id: "+ getId() + "\nItem: " + getNomeMeta() + "\nStatus: " + getStatus() + "\nMeta: " + getDataMeta();
     }
 }

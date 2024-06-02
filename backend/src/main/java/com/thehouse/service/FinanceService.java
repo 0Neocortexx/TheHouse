@@ -1,4 +1,4 @@
-package com.thehouse.services;
+package com.thehouse.service;
 
 import com.thehouse.model.entities.Financas;
 import com.thehouse.repository.FinanceRepository;

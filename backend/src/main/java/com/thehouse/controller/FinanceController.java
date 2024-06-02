@@ -1,9 +1,7 @@
 package com.thehouse.controller;
 
 import com.thehouse.model.entities.Financas;
-import com.thehouse.repository.FinanceRepository;
-import com.thehouse.services.FinanceService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.thehouse.service.FinanceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
