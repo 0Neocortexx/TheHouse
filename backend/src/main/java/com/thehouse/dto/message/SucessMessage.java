@@ -1,9 +1,9 @@
-package com.thehouse.dto;
+package com.thehouse.dto.message;
 
-public class ErrorMessage {
+public class SucessMessage {
     private String message;
 
-    public ErrorMessage(String message){
+    public SucessMessage(String message) {
         this.message = message;
     }
 

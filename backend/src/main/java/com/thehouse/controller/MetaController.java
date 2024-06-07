@@ -1,9 +1,8 @@
 package com.thehouse.controller;
 
-import com.thehouse.dto.ErrorMessage;
-import com.thehouse.dto.SucessMessage;
+import com.thehouse.dto.message.ErrorMessage;
+import com.thehouse.dto.message.SucessMessage;
 import com.thehouse.dto.meta.MetaDTO;
-import com.thehouse.model.entities.Meta;
 import com.thehouse.service.MetaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +28,7 @@ public class MetaController {
 
     @PostMapping("/novo")
     public ResponseEntity<?> addMeta(@RequestBody @Valid MetaDTO metaDTO) {
-        MetaDTO metaSalva = service.salvar(metaDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(metaSalva);
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.salvar(metaDTO));
     }
 
     /*
@@ -43,10 +41,9 @@ public class MetaController {
         MetaDTO metaAtualizada = service.atualizarMeta(id, metaDTO);
         if (metaAtualizada == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorMessage("META NÃO ENCONTRADA"));
-        } else {
-            metaDTO.setId(id);
-            return ResponseEntity.ok().body(metaAtualizada);
         }
+        metaDTO.setId(id);
+        return ResponseEntity.ok().body(metaAtualizada);
     }
 
     /*
@@ -59,7 +56,7 @@ public class MetaController {
         MetaDTO metaDTO = service.buscarPorId(id);
         if(metaDTO == null) { // Se a busca por id der null ou vazio
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorMessage("Meta não encontrada!")); // Responderá com um Page not found e enviará a mensagem
-        } else { // Se encontrar a mensagem
+        } else {
             return ResponseEntity.ok(metaDTO); // Retornará o objeto
         }
     }

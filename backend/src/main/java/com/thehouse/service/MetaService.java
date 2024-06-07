@@ -21,10 +21,10 @@ public class MetaService {
     }
 
     public MetaDTO salvar(MetaDTO metaDTO) {
-        Meta meta = mapper.toEntity(metaDTO);
-        Meta metaSalva = repository.save(meta);
-        return mapper.toDTO(metaSalva);
+        Meta metaSalva = mapper.toEntity(metaDTO);
+        return mapper.toDTO(repository.save(metaSalva));
     }
+
     public List<MetaDTO> buscarTodos() {
         List<Meta> lista = repository.findAllByOrderByIdAsc();
         return lista.stream().map(mapper::toDTO).collect(Collectors.toList());
@@ -56,8 +56,7 @@ public class MetaService {
     }
 
     public void removerMeta(MetaDTO metaDTO) {
-        Meta meta = mapper.toEntity(metaDTO);
-        repository.delete(meta);
+        repository.delete(mapper.toEntity(metaDTO));
     }
 
     public void removerTodas() {

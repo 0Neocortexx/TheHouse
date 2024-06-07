@@ -1,10 +1,7 @@
 package com.thehouse.model.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 import java.time.LocalDate;
@@ -24,7 +21,7 @@ public class Meta {
     public Meta() {
     }
 
-    public  Meta(Long id, String nomeMeta, Boolean status, LocalDate dataMeta, Double valorAtual, Double valorTotal) {
+    public  Meta(Long id, String nomeMeta, LocalDate dataMeta, Double valorAtual, Double valorTotal, Boolean status) {
         this.id = id;
         this.nomeMeta = nomeMeta;
         this.status = status;

@@ -14,29 +14,14 @@ public class MetaMapper {
         if (metaDTO == null) {
             return null;
         }
-        Meta meta = new Meta();
-        meta.setNomeMeta(metaDTO.getNomeMeta());
-        meta.setDataMeta(metaDTO.getDataMeta());
-        meta.setValorTotal(metaDTO.getValorTotal());
-        meta.setValorAtual(metaDTO.getValorAtual());
-        meta.setStatus(metaDTO.getStatus());
-        return meta;
+        return new Meta(metaDTO.getId(), metaDTO.getNomeMeta(), metaDTO.getDataMeta(), metaDTO.getValorAtual(), metaDTO.getValorTotal(), metaDTO.getStatus());
     }
 
     public MetaDTO toDTO(Meta meta) {
         if (meta == null) {
             return null;
         }
-        MetaDTO metaDTO = new MetaDTO();
-
-        metaDTO.setId(meta.getId());
-        metaDTO.setNomeMeta(meta.getNomeMeta());
-        metaDTO.setDataMeta(meta.getDataMeta());
-        metaDTO.setValorTotal(meta.getValorTotal());
-        metaDTO.setValorAtual(meta.getValorAtual());
-        metaDTO.setStatus(meta.getStatus());
-
-        return metaDTO;
+        return new MetaDTO(meta.getId(), meta.getNomeMeta(), meta.getDataMeta(), meta.getValorAtual(), meta.getValorTotal(), meta.getStatus());
     }
 
 }

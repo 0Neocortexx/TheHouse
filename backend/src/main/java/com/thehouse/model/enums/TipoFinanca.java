@@ -1,6 +1,6 @@
 package com.thehouse.model.enums;
 
-public enum FinanceType {
+public enum TipoFinanca {
     DESPESA,
     RECEITA
 }

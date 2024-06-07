@@ -1,11 +1,13 @@
 package com.thehouse.repository;
 
-import com.thehouse.model.entities.Financas;
+import com.thehouse.model.entities.Financa;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface FinanceRepository extends JpaRepository<Financas, Long> {
+@Repository
+public interface FinancaRepository extends JpaRepository<Financa, Long> {
 
     /*
      * findAll: Indica que o método retornará todos os registros.
@@ -13,5 +15,5 @@ public interface FinanceRepository extends JpaRepository<Financas, Long> {
      * Valor: O campo pelo qual a ordenação será feita.
      * Desc: Indica que a ordenação será em ordem decrescente .
      */
-    List<Financas> findAllByOrderByIdAsc();
+    List<Financa> findAllByOrderByIdAsc();
 }
