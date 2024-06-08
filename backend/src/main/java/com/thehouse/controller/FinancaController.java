@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/financa")
 @CrossOrigin("*")
@@ -23,9 +25,16 @@ public class FinancaController {
         return ResponseEntity.ok(service.buscarTodos());
     }
 
+    // Rota para inserir uma nova finança
     @PostMapping("/novo")
     public ResponseEntity<?> addFinance(@RequestBody @Valid  FinancaDTO financaDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.salvarFinanca(financaDTO));
+    }
+
+    // Rota para inserir mais de uma nova finança
+    @PostMapping("/novos")
+    public ResponseEntity<?> addFinanceList(@RequestBody @Valid List<FinancaDTO> financaDTOList) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.inserirVarios(financaDTOList));
     }
 
     @GetMapping("/{id}")
@@ -59,5 +68,4 @@ public class FinancaController {
         service.deleteAll();
         return ResponseEntity.status(HttpStatus.OK).body(new SucessMessage("TODAS A METAS FORAM DELETADAS"));
     }
-
 }

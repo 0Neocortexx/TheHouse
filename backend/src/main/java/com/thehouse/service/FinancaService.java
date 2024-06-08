@@ -6,6 +6,7 @@ import com.thehouse.model.entities.Financa;
 import com.thehouse.repository.FinancaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,9 +34,8 @@ public class FinancaService {
         return mapper.toDTO(repository.save(financaSalva));
     }
 
-    public void deleteFinance(FinancaDTO financaDTO) {
-        repository.delete(mapper.toEntity(financaDTO));
-    }
+    // Metodo que salva alterações de finança no banco
+    // Reduzir o código
     public FinancaDTO alterarFinanca(Long id, FinancaDTO financaDTO) {
         Financa financaExistente = repository.findById(id).orElse(null);
         if (financaExistente == null) {
@@ -47,7 +47,25 @@ public class FinancaService {
         repository.save(financaExistente);
         return mapper.toDTO(financaExistente);
     }
+
+    // Método que deleta todas as informações do banco
+    // Ajustar para manter um padrão de projeto
     public void deleteAll() {
         repository.deleteAll();
+    }
+
+    // Método que deleta uma finança do banco e retorna a mesma
+    public void deleteFinance(FinancaDTO financaDTO) {
+        repository.delete(mapper.toEntity(financaDTO));
+    }
+
+    // Método que salva vários elementos de uma lista no banco
+    public List<FinancaDTO> inserirVarios (List<FinancaDTO> financasDTO) { // Retorna uma lista de finanças e recebe uma lista de finanças
+        List<FinancaDTO> financasSalvas = new ArrayList<>(); // Cria o array para as finanças que serão salvas
+        for (FinancaDTO financaDTO : financasDTO) { // realizar uma for para cada item na lista recebida
+            Financa financa = mapper.toEntity(financaDTO); // Mapeia o item da lista
+            financasSalvas.add(mapper.toDTO(repository.save(financa))); // salva o item no banco e adiciona no array de finanças salvas
+        }
+        return financasSalvas; // Retorna o array de finanças salvas
     }
 }
