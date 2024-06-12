@@ -45,14 +45,5 @@ public class ListaDeFilmes {
     public void setDataAssistida(LocalDate dataAssistida) {
         this.dataAssistida = dataAssistida;
     }
-
-    @Override
-    public String toString() {
-        return "ListaDeFilmes{" +
-                "id=" + id +
-                ", nomeDoFilme='" + nomeDoFilme + '\'' +
-                ", dataAssistida=" + dataAssistida +
-                '}';
-    }
 }
 

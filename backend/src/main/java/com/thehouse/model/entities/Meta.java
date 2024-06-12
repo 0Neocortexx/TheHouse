@@ -66,8 +66,4 @@ public class Meta {
     public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
     }
-
-    public String toString() {
-        return "id: "+ getId() + "\nItem: " + getNomeMeta() + "\nStatus: " + getStatus() + "\nMeta: " + getDataMeta();
-    }
 }

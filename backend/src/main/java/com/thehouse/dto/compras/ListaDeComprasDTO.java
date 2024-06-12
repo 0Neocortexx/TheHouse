@@ -1,20 +1,21 @@
-package com.thehouse.model.entities;
+package com.thehouse.dto.compras;
 
-import jakarta.persistence.*;
-
-@Entity
-public class ListaDeCompra {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import org.springframework.stereotype.Component;
+public class ListaDeComprasDTO {
     private Long id;
+    @NotBlank(message = "O produto não deve ser nulo nem vazio.")
     private String produto;
+
+    @Positive(message = "A quantidade de produtos deve ser positiva")
     private Integer quantidade;
+
+    @Positive(message = "O preço unitário deve ser positivo")
     private Double precoUnitario;
     private Boolean possuiNoEstoque;
 
-    public ListaDeCompra() {
-    }
-    public ListaDeCompra(Long id, String produto, Integer quantidade, Boolean possuiNoEstoque, Double precoUnitario) {
+    public ListaDeComprasDTO(Long id, String produto, Integer quantidade, Double precoUnitario, Boolean possuiNoEstoque) {
         this.id = id;
         this.produto = produto;
         this.quantidade = quantidade;
@@ -25,9 +26,11 @@ public class ListaDeCompra {
     public Long getId() {
         return id;
     }
+
     public String getProduto() {
         return produto;
     }
+
     public Integer getQuantidade() {
         return quantidade;
     }
@@ -38,9 +41,11 @@ public class ListaDeCompra {
     public Boolean getPossuiNoEstoque() {
         return possuiNoEstoque;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public void setProduto(String produto) {
         this.produto = produto;
     }

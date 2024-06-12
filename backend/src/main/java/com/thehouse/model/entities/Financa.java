@@ -59,8 +59,4 @@ public class Financa {
     public void setTipoFinanca(TipoFinanca tipoFinanca) {
         this.tipoFinanca = tipoFinanca;
     }
-
-    public String toString(){
-        return "id: " +  getId() + "\nmotivo: "+ getMotivo() + "\nvalor: " + getValor() + "\nreceita/despesa: "+ getTipoFinanca();
-    }
 }
